@@ -7,6 +7,7 @@ Some special features in our project include:
 - correct answers have a ding sound effect
 - wrong answers have a buzzer sound effect
 - option at the end of the quiz to play again
+- results page at the end of the 10 quiz questions that display your score 
 
 
 To run our server: 
@@ -16,3 +17,8 @@ To run our server:
 4. Now you can run the server using node server.js
 5. After you run the server, terminal should output a message saying that the app is listening on port 3000
 6. On your browser, go to localhost:3000 to see the website 
+
+Team Members Role: 
+Kayla Motiram 
+- server.js
+- updated script.js on 
