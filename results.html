@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz App | Results</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Your Score</h1>
+    <p id="score">Calculating...</p>
+    <button onclick="window.location.href='index.html'">Play Again</button>
+  </div>
+
+  <script>
+    const score = localStorage.getItem("quizScore");
+    document.getElementById("score").textContent = `${score} / 10`;
+  </script>
+</body>
+</html>
