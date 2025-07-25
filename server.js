@@ -1,15 +1,19 @@
 const express = require("express");
-const cors = require("cors");
-const fs = require("fs");
 const path = require("path");
-
+const port = 3000; 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
-app.use(cors());
-app.use(express.json());
+app.use(express.static('.'));
 
-app.use(express.static(path.join(__dirname, "../frontend")));
+app.get('/', (req, res) => {
+  res.sendFile("./index.html");
+});
+
+app.listen(port, () => {
+  console.log(`App listening on port ${port}`)
+});
+
+/*
 
 let allQuestions = JSON.parse(fs.readFileSync("questions.json", "utf8"));
 
@@ -35,3 +39,5 @@ app.post("/api/score", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
+
+*/
