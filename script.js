@@ -78,8 +78,10 @@ function showQuestion() {
       if (b === btn){
       if (opt === q.answer) {
         btn.style.backgroundColor = "#81c784"; //green for correct
+        new Audio ("correct.wav").play(); //sound for correct
       } else {
         btn.style.backgroundColor = "#e57373"; //red for wrong
+        new Audio ("error.mp3").play(); //sound for wrong
       }
 
       } else {
