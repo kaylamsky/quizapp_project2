@@ -20,5 +20,10 @@ To run our server:
 
 Team Members Role: 
 Kayla Motiram 
-- server.js
-- updated script.js on 
+- server.js: starts the server, sends pages to the browser, sends random questions from the questions.json file to the browser 
+- updated my partners arrow function "onclick" function in script.js to add features such as sound for correct and wrong answers, and changing the color of the answer choice depending if its right or wrong, and always displaying the correct answer in green if a wrong answer was chosen
+- updated script.js to 
+
+Haneen Mustafa
+- script.js
+- created the different pages by created separate html files like results.html, quiz.html and index.html 
