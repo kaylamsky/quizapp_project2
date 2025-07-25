@@ -20,10 +20,12 @@ To run our server:
 
 Team Members Role: 
 Kayla Motiram 
-- server.js: starts the server, sends pages to the browser, sends random questions from the questions.json file to the browser 
+- server.js: starts the server, sends pages to the browser, sends random questions from the questions.json file to the browser, checks the users answers and sends the score
 - updated my partners arrow function "onclick" function in script.js to add features such as sound for correct and wrong answers, and changing the color of the answer choice depending if its right or wrong, and always displaying the correct answer in green if a wrong answer was chosen
-- updated script.js to 
-
+- updated script.js so that it works directly with server.js for example the server routes, /questions in script.js is getting the questions from the questions.json file
+- contributed to style.css
+  
 Haneen Mustafa
 - script.js
-- created the different pages by created separate html files like results.html, quiz.html and index.html 
+- created the different pages by created separate html files like results.html, quiz.html and index.html
+- contributed to style.css 
