@@ -70,20 +70,32 @@ function showQuestion() {
   ["A", "B", "C", "D"].forEach((opt) => {
     const btn = document.createElement("button");
     btn.textContent = `${opt}: ${q[opt]}`;
+
     btn.onclick = () => {
       userAnswers[currentQuestionIndex] = opt;
-      document.querySelectorAll("#options button").forEach(b => b.disabled = true);
-
+      document.querySelectorAll("#options button").forEach(b => {
+      //if the button is pressed
+      if (b === btn){
       if (opt === q.answer) {
-        btn.style.backgroundColor = "#81c784";
+        btn.style.backgroundColor = "#81c784"; //green for correct
       } else {
-        btn.style.backgroundColor = "#e57373";
+        btn.style.backgroundColor = "#e57373"; //red for wrong
       }
 
+      } else {
+        // shows correct answer in green
+        if (b.textContent[0] === q.answer){
+          b.style.backgroundColor = "#81c784"; 
+        }
+        b.style.opacity = "0.5"; 
+        
+      }
+      });
       document.getElementById("nextBtn").disabled = false;
-    };
+  
+      };
     optionsDiv.appendChild(btn);
-  });
+});
 
   document.getElementById("nextBtn").disabled = true;
   startTimer();
