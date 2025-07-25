@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 async function loadQuestions() {
   try {
-    const res = await fetch("/api/questions");
+    const res = await fetch("/questions");
     questions = await res.json();
   } catch (err) {
     alert("Failed to load questions.");
@@ -101,7 +101,7 @@ function handleNext() {
 async function submitQuiz() {
   clearInterval(timer);
 
-  const res = await fetch("/api/score", {
+  const res = await fetch("/score", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
