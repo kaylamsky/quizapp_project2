@@ -3,6 +3,7 @@ const path = require("path");
 const port = 3000; 
 const app = express();
 const fs = require("fs");
+const { getCollection } = require('./db');
 
 app.use(express.static('.'));
 app.use(express.json()); 
@@ -51,7 +52,58 @@ app.post('/score', (req, res) => {
   // sends the score back as json, display to be fixed in script.js
   res.json({score: score}); 
 })
+
+//CONNECTION TO DB
+app.get('/signin', function(reqe, res, next){
+  res.render("signin"); 
+})
+
+app.get('/signup', function(req, res, next) {
+  res.render("signup");
+});
+
+//need to add what if username is already been taken! 
+app.post("/signup/submit", async (req, res) => {
+  const users = getCollection("users"); 
+  const usernameInput = req.body.name;
+
+  //what if username has already been taken
+  const existingUser = await users.findOne(
+    {username : usernameInput}
+  ); 
+  if (existingUser){
+    console.log("Username is already taken");
+    return res.redirect("/signup"); 
+  }
+
+  await users.insertOne({
+    username: req.body.name,
+    password: req.body.password 
+  }); 
+
+  res.redirect("/quiz.html"); 
+});
+
+app.post("/signin", async (req, res) =>{
+   const users = getCollection("users"); 
+  const usernameInput = req.body.name;
+
+  //find user 
+  const user = await users.findOne({
+    username: usernameInput
+  }); 
+
+  if (user){
+    res.redirect("/quiz.html");
+  } else {
+    res.redirect("/signin")
+  }
+
+}); 
+
+
 app.listen(port, () => {
   console.log(`App listening on port 3000`)
 });
+
 
