@@ -26,6 +26,6 @@ Kayla Motiram
 - contributed to style.css
   
 Haneen Mustafa
-- script.js
+- script.js: displays one question at a time with multiple choice options, tracks user answers and disables the inputs after selection, adds a 30-second timer per question with a visual progress bar, auto-skips unanswered questions displayed "Time's up"
 - created the different pages by created separate html files like results.html, quiz.html and index.html
 - contributed to style.css 
