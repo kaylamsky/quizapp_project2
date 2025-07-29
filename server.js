@@ -3,7 +3,9 @@ const path = require("path");
 const port = 3000; 
 const app = express();
 const fs = require("fs");
-const { getCollection } = require('./db');
+require('dotenv').config(); 
+const { connectToDB, getCollection } = require('./db');
+
 
 
 app.get('/', (req, res) => {
@@ -11,6 +13,7 @@ app.get('/', (req, res) => {
 });
 
 app.use(express.static('.'));
+app.use(express.urlencoded({extended: false})); 
 app.use(express.json()); 
 
 app.get('/results', (req, res) => {
@@ -67,7 +70,7 @@ app.get('/signin', function(reqe, res, next){
 //need to add what if username is already been taken! 
 app.post("/signup/submit", async (req, res) => {
   const users = getCollection("users"); 
-  const usernameInput = req.body.name;
+  const usernameInput = req.body.username;
 
   //what if username has already been taken
   const existingUser = await users.findOne(
@@ -79,7 +82,7 @@ app.post("/signup/submit", async (req, res) => {
   }
 
   await users.insertOne({
-    username: req.body.name,
+    username: req.body.username,
     password: req.body.password 
   }); 
 
@@ -88,7 +91,7 @@ app.post("/signup/submit", async (req, res) => {
 
 app.post("/signin", async (req, res) =>{
    const users = getCollection("users"); 
-  const usernameInput = req.body.name;
+  const usernameInput = req.body.username;
 
   //find user 
   const user = await users.findOne({
@@ -103,6 +106,15 @@ app.post("/signin", async (req, res) =>{
 
 }); 
 
+//connect to mongoDB 
+(async() =>{
+  try{
+    await connectToDB();
+    console.log('Database initialized');
+  } catch(error){
+    console.error('Failed to start database', error);
+  }
+})();
 
 app.listen(port, () => {
   console.log(`App listening on port 3000`)
