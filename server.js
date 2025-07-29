@@ -5,12 +5,13 @@ const app = express();
 const fs = require("fs");
 const { getCollection } = require('./db');
 
-app.use(express.static('.'));
-app.use(express.json()); 
 
 app.get('/', (req, res) => {
-  res.sendFile("./index.html");
+  res.redirect('/signup');
 });
+
+app.use(express.static('.'));
+app.use(express.json()); 
 
 app.get('/results', (req, res) => {
   res.sendFile("./results.html");
@@ -54,13 +55,14 @@ app.post('/score', (req, res) => {
 })
 
 //CONNECTION TO DB
+app.get('/signup', function(req, res, next) {
+  res.sendFile(path.join(__dirname, "signup.html")); 
+});
+
 app.get('/signin', function(reqe, res, next){
-  res.render("signin"); 
+  res.sendFile(path.join(__dirname, "signin.html")); 
 })
 
-app.get('/signup', function(req, res, next) {
-  res.render("signup");
-});
 
 //need to add what if username is already been taken! 
 app.post("/signup/submit", async (req, res) => {
