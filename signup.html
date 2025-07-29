@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/style.css">
+</head>
+<body>
+    <div class="container">
+        <form method="POST" action ="/signup/submit" class="signup_form">
+            <div class="form_header">
+                <h1>Sign Up</h1>
+                <p> Already have an account? <a href="/signin">Sign in</a></p>
+            </div>
+            <label for="email"> Email </label>
+            <input id="email" type="text" name="email">
+            <label for="username"> Username </label>
+            <input id="username" type="text" name="username">
+            <label for="password"> Password </label>
+            <input id="password" type="text" name="password">
+            
+            <div class="checkbox">
+                <input type="checkbox">
+                <p> I would not like to recieve emails with updates on promotions or leaderboard</p>
+            </div>
+            <input type="submit" value="Sign up">
+            <p class="footnote">
+                By signing up to create an account, you are accepting the terms and agreement policy 
+            </p>
+        </form>
+    </div>
+</body>
+</html>
