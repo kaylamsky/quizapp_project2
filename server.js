@@ -3,6 +3,9 @@ const path = require("path");
 const port = 3000; 
 const app = express();
 const fs = require("fs");
+const fetch = require('node-fetch');
+const { MongoClient } = require('mongodb');
+
 require('dotenv').config(); 
 const { connectToDB, getCollection } = require('./db');
 
@@ -36,7 +39,7 @@ app.get('/questions', async (req, res) => {
     const formattedQuestions = data.results.map((q) => {
       const allOptions = [...q.incorrect_answers];
       const correctIndex = Math.floor(Math.random() * (allOptions.length + 1));
-      allOptions.splice(correctIndex, 0, q.correct_answer); // Insert correct answer randomly
+      allOptions.splice(correctIndex, 0, q.correct_answer);
 
       return {
         question: q.question,
@@ -48,10 +51,14 @@ app.get('/questions', async (req, res) => {
       };
     });
 
-     res.json(formattedQuestions);
+    res.json(formattedQuestions);
   } catch (err) {
-    console.error('Trivia API fetch failed:', err);
-    res.status(500).json({ error: 'Failed to load questions.' });
+    console.error('Trivia API fetch failed, using local questions:', err);
+    try {
+      res.json(getQuestions());
+    } catch (localErr) {
+      res.status(500).json({ error: 'Failed to load questions.' });
+    }
   }
 });
 

@@ -29,3 +29,7 @@ Haneen Mustafa
 - script.js: displays one question at a time with multiple choice options, tracks user answers and disables the inputs after selection, adds a 30-second timer per question with a visual progress bar, auto-skips unanswered questions displayed "Time's up"
 - created the different pages by created separate html files like results.html, quiz.html and index.html
 - contributed to style.css 
+- created both pages profile.html and Leaderboard.html
+- I worked on the API part of the project. I created a new route called /questions in our server.js file. This route gets 10 random multiple-choice questions from the Open Trivia Database API. It mixes the answers and puts them into A, B, C, and D choices. It also sends the right answer so the quiz can check if the player is correct. This way, the quiz has new questions every time someone plays.
+
+
