@@ -12,9 +12,9 @@ app.get('/', (req, res) => {
   res.redirect('/signup');
 });
 
-app.use(express.static('.'));
 app.use(express.urlencoded({extended: false})); 
 app.use(express.json()); 
+app.use(express.static(path.join(__dirname)));
 
 app.get('/results', (req, res) => {
   res.sendFile(path.join(__dirname, "results.html"));
@@ -22,10 +22,6 @@ app.get('/results', (req, res) => {
 
 app.get('/quiz', (req, res) => {
   res.sendFile(path.join(__dirname, "quiz.html"));
-});
-
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.get('/questions', async (req, res) => {
@@ -136,6 +132,7 @@ app.post("/signin/submit", async (req, res) =>{
   if (user){
     res.sendFile(path.join(__dirname, "quiz.html"));
   } else {
+    console.log("Sign in failed");
     res.redirect("/signin?error=invalid")
   }
 
