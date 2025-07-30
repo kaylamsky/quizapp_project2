@@ -40,7 +40,10 @@ app.get('/questions', async (req, res) => {
 
       return {
         question: q.question,
-        options: allOptions,
+        optionA: allOptions[0],
+        optionB: allOptions[1],
+        optionC: allOptions[2],
+        optionD: allOptions[3],
         answer: q.correct_answer,
       };
     });
