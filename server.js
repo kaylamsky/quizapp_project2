@@ -63,11 +63,12 @@ function getQuestions(){
   return allData.slice(0,10); 
 }
 
-app.post('/score', (req, res) => {
+app.post('/score', async (req, res) => {
   //gets the answers from request body (a,b,c, or d)
   let userAnswers = req.body.answers;
   //gets the questions that were asked
   let questions = req.body.questions; 
+  let username = req.body.username; 
   let score = 0; 
   //questions[i].asnwer is the answer field from questions.json, checks that correct answer with user answer
   for (let i = 0; i < questions.length; i++){
@@ -75,6 +76,13 @@ app.post('/score', (req, res) => {
       score++;
     }
   }
+  //save score to DB
+  const users = getCollection("users");
+  await users.updateOne(
+    {usernmae: username},
+    {$push: {scores: score}}
+  );
+
   // sends the score back as json, display to be fixed in script.js
   res.json({score: score}); 
 })
@@ -100,7 +108,7 @@ app.post("/signup/submit", async (req, res) => {
   ); 
   if (existingUser){
     console.log("Username is already taken");
-    return res.redirect("/signup"); 
+    return res.redirect("/signup?error=username"); 
   }
 
   await users.insertOne({
@@ -111,8 +119,8 @@ app.post("/signup/submit", async (req, res) => {
   res.redirect("/quiz.html"); 
 });
 
-app.post("/signin", async (req, res) =>{
-   const users = getCollection("users"); 
+app.post("/signin/submit", async (req, res) =>{
+  const users = getCollection("users"); 
   const usernameInput = req.body.username;
   const passwordInput = req.body.password;
 
@@ -125,7 +133,7 @@ app.post("/signin", async (req, res) =>{
   if (user){
     res.redirect("/quiz.html");
   } else {
-    res.redirect("/signin")
+    res.redirect("/signin?error=invalid")
   }
 
 }); 

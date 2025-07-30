@@ -183,9 +183,13 @@ ul#quizHistory li {
   color: #333;
 }
 
+#signup_errormsg{
+  color: red;
+  font-weight: bold; 
+  margin-top: 10px; 
+  padding: 8px; 
+}
 
-
-  
   
   
   
