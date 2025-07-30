@@ -140,8 +140,12 @@
     box-shadow: 0 0 0 3px rgba(216, 27, 96, 0.2);
 }
 
-
-  
+#signup_errormsg{
+  color: red;
+  font-weight: bold; 
+  margin-top: 10px; 
+  padding: 8px; 
+}
   
   
   
