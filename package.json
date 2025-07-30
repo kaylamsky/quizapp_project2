@@ -19,7 +19,9 @@
   },
   "homepage": "https://github.com/kaylamsky/quizapp_project2#readme",
   "dependencies": {
+    "axios": "^1.11.0",
     "dotenv": "^17.2.1",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "node-fetch": "^3.3.2"
   }
 }
