@@ -69,14 +69,14 @@ function showQuestion() {
 
   ["A", "B", "C", "D"].forEach((opt) => {
     const btn = document.createElement("button");
-    btn.textContent = `${opt}: ${q[opt]}`; 
+    btn.textContent = `${opt}: ${q["option" + opt]}`; 
 
     btn.onclick = () => {
       userAnswers[currentQuestionIndex] = opt;
       document.querySelectorAll("#options button").forEach(b => {
       //if the button is pressed
       if (b === btn){
-      if (q[opt] === q.answer) {
+      if (q["option" + opt] === q.answer) {
         btn.style.backgroundColor = "#81c784"; //green for correct
         new Audio ("correct.wav").play(); //sound for correct
       } else {
@@ -86,7 +86,7 @@ function showQuestion() {
 
       } else {
         // shows correct answer in green
-        if (q[b.textContent[0]] === q.answer){
+        if (q["option" + b.textContent[0]] === q.answer){
           b.style.backgroundColor = "#81c784"; 
         }
         b.style.opacity = "0.5"; 
