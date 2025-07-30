@@ -73,24 +73,19 @@ app.post('/score', async (req, res) => {
   let questions = req.body.questions; 
   let username = req.body.username; 
   let score = 0; 
-  /*questions[i].asnwer is the answer field from questions.json, checks that correct answer with user answer
+  //questions[i].asnwer is the answer field from questions.json, checks that correct answer with user answer
   for (let i = 0; i < questions.length; i++){
     if (userAnswers[i] === questions[i].answer){
       score++;
     }
-  }*/
-
-  //fixed scores
-  for (let i=0; i < questions.length; i++){
-    const selectedLetter = userAnswers[i];
-    if(!selectedLetter) continue;
-
-    const selectedAnswer = questions[i]["option" + selectedLetter];
-
-    if (selectedAnswer === questions[i].answer){
-      score++;
-    }
   }
+  //save score to DB
+  const users = getCollection("users");
+  await users.updateOne(
+    {usernmae: username},
+    {$push: {scores: score}}
+  );
+
   // sends the score back as json, display to be fixed in script.js
   res.json({score: score}); 
 })
