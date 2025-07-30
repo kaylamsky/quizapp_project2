@@ -8,6 +8,7 @@
 </head>
 <body>
     <div class="container">
+        <p id="signup_errormsg" class="error"></p>
         <form method="POST" action ="/signup/submit" class="signup_form">
             <div class="form_header">
                 <h1>Sign Up</h1>
@@ -30,5 +31,17 @@
             </p>
         </form>
     </div>
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const errorBox = document.getElementById("signup_errormsg");
+        if (params.get("error")=== "username"){
+            document.getElementById("signup_errormsg").textContent = "Username is already taken. Please choose another.";
+
+            //error message disappears after 15s
+            setTimeout(() =>{
+                errorBox.textContent = "";
+            }, 15000);
+        }
+    </script>
 </body>
 </html>
