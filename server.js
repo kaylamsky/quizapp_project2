@@ -119,7 +119,7 @@ app.post("/signup/submit", async (req, res) => {
     password: req.body.password 
   }); 
 
-  res.redirect("/quiz.html"); 
+  res.sendFile(path.join(__dirname, "quiz.html")); 
 });
 
 app.post("/signin/submit", async (req, res) =>{
@@ -134,7 +134,7 @@ app.post("/signin/submit", async (req, res) =>{
   });
 
   if (user){
-    res.redirect("/quiz.html");
+    res.sendFile(path.join(__dirname, "quiz.html"));
   } else {
     res.redirect("/signin?error=invalid")
   }
