@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Quiz App | Leaderboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Leaderboard</h1>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Username</th>
+          <th>Average Score</th>
+          <th>Total Games</th>
+        </tr>
+      </thead>
+      <tbody id="leaderboardBody"></tbody>
+    </table>
+    <button onclick="window.location.href='index.html'">Back to Home</button>
+  </div>
+
+  <script>
+    fetch('/leaderboard')
+      .then(res => res.json())
+      .then(data => {
+        const tbody = document.getElementById('leaderboardBody');
+        data.forEach((user, i) => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${i + 1}</td>
+            <td>${user._id}</td>
+            <td>${user.avgScore.toFixed(2)}</td>
+            <td>${user.totalGames}</td>
+          `;
+          tbody.appendChild(row);
+        });
+      });
+  </script>
+</body>
+</html>

@@ -13,8 +13,20 @@
   </div>
 
   <script>
-    const score = localStorage.getItem("quizScore");
-    document.getElementById("score").textContent = `${score} / 10`;
-  </script>
+  const score = localStorage.getItem("quizScore");
+  document.getElementById("score").textContent = `${score} / 10`;
+
+  // Save quiz score to DB
+  const username = localStorage.getItem("username");
+  const category = localStorage.getItem("quizCategory") || "General"; // Optional
+  const date = new Date().toISOString().slice(0, 10);
+
+  fetch('/save-quiz', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username, score: Number(score), category, date })
+  });
+</script>
+
 </body>
 </html>
