@@ -127,19 +127,6 @@ async function submitQuiz() {
   const data = await res.json();
   const score = data.score; 
 
-  //save score to DB using /save-quiz route
-  const username = localStorage.getItem("username");
-  await fetch("/save-quiz", {
-    method: "POST",
-    headers: {"Content-Type": "application/json"},
-    body: JSON.stringify({
-      username: username,
-      score: score,
-      category: "General",
-      date: new Date().toISOString()
-    })
-  });
-
 //redirect to results
   localStorage.setItem("quizScore", score);
   window.location.href = "results.html";
