@@ -17,11 +17,11 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json()); 
 
 app.get('/results', (req, res) => {
-  res.sendFile("./results.html");
+  res.sendFile(path.join(__dirname, "results.html"));
 });
 
 app.get('/quiz', (req, res) => {
-  res.sendFile("./quiz.html");
+  res.sendFile(path.join(__dirname, "quiz.html"));
 });
 
 app.get('/questions', async (req, res) => {
@@ -80,7 +80,7 @@ app.get('/signup', function(req, res, next) {
   res.sendFile(path.join(__dirname, "signup.html")); 
 });
 
-app.get('/signin', function(reqe, res, next){
+app.get('/signin', function(req, res, next){
   res.sendFile(path.join(__dirname, "signin.html")); 
 })
 
@@ -110,11 +110,13 @@ app.post("/signup/submit", async (req, res) => {
 app.post("/signin", async (req, res) =>{
    const users = getCollection("users"); 
   const usernameInput = req.body.username;
+  const passwordInput = req.body.password;
 
   //find user 
   const user = await users.findOne({
-    username: usernameInput
-  }); 
+    username: usernameInput,
+    password: passwordInput
+  });
 
   if (user){
     res.redirect("/quiz.html");
@@ -123,6 +125,54 @@ app.post("/signin", async (req, res) =>{
   }
 
 }); 
+
+app.post('/save-quiz', async (req, res) => {
+  const users = getCollection("users");
+  const { username, score, category, date } = req.body;
+
+  try {
+    await users.updateOne(
+      { username: username },
+      { $push: { quizHistory: { score, category, date } } }
+    );
+    res.sendStatus(200);
+  } catch (err) {
+    console.error('Error saving quiz result:', err);
+    res.status(500).send("Failed to save quiz");
+  }
+});
+
+app.get('/profile', async (req, res) => {
+  const users = getCollection("users");
+  const username = req.query.username; // Send this from frontend
+
+  const user = await users.findOne({ username: username });
+  if (!user) return res.status(404).send("User not found");
+
+  res.send(user.quizHistory || []);
+});
+
+
+app.get('/leaderboard', async (req, res) => {
+  const users = getCollection("users");
+
+  const leaderboard = await users.aggregate([
+    { $unwind: "$quizHistory" },
+    {
+      $group: {
+        _id: "$username",
+        avgScore: { $avg: "$quizHistory.score" },
+        totalGames: { $sum: 1 }
+      }
+    },
+    { $sort: { avgScore: -1 } },
+    { $limit: 10 }
+  ]).toArray();
+
+  res.json(leaderboard);
+});
+
+
 
 //connect to mongoDB 
 (async() =>{
