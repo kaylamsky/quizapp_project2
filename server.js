@@ -96,7 +96,7 @@ app.post("/signup/submit", async (req, res) => {
   ); 
   if (existingUser){
     console.log("Username is already taken");
-    return res.redirect("/signup"); 
+    return res.redirect("/signup?error=username"); 
   }
 
   await users.insertOne({
