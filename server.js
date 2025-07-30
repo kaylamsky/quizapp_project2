@@ -107,19 +107,21 @@ app.post("/signup/submit", async (req, res) => {
   res.redirect("/quiz.html"); 
 });
 
-app.post("/signin", async (req, res) =>{
-   const users = getCollection("users"); 
+app.post("/signin/submit", async (req, res) =>{
+  const users = getCollection("users"); 
   const usernameInput = req.body.username;
+  const passwordInput = req.body.password;
 
   //find user 
   const user = await users.findOne({
-    username: usernameInput
+    username: usernameInput,
+    password: passwordInput
   }); 
 
   if (user){
     res.redirect("/quiz.html");
   } else {
-    res.redirect("/signin")
+    res.redirect("/signin?error=invalid")
   }
 
 }); 
