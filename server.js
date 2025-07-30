@@ -24,6 +24,10 @@ app.get('/quiz', (req, res) => {
   res.sendFile(path.join(__dirname, "quiz.html"));
 });
 
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, "index.html"));
+});
+
 app.get('/questions', async (req, res) => {
   try {
     const apiRes = await fetch('https://opentdb.com/api.php?amount=10&type=multiple');
