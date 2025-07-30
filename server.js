@@ -1,6 +1,6 @@
 const express = require("express");
 const path = require("path");
-const port = 3000; 
+const port = 3000 || process.env.PORT; 
 const app = express();
 const fs = require("fs");
 require('dotenv').config(); 
@@ -200,7 +200,7 @@ app.get('/leaderboard', async (req, res) => {
 })();
 
 app.listen(port, () => {
-  console.log(`App listening on port 3000`)
+  console.log(`App listening on port ${port}`)
 });
 
 
