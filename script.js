@@ -115,10 +115,13 @@ function handleNext() {
 async function submitQuiz() {
   clearInterval(timer);
 
+  const username = localStorage.getItem("username"); 
+
   const res = await fetch("/score", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
+      username : username,
       answers: userAnswers,
       questions: questions
     })
