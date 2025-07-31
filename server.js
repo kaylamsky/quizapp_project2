@@ -77,7 +77,7 @@ app.post('/score', async (req, res) => {
   //questions[i].asnwer is the answer field from questions.json, checks that correct answer with user answer
   for (let i = 0; i < questions.length; i++){
     const letterChoice = userAnswers[i]; 
-    const choice = letterChoice ? question[i]["option" + letter] : null;
+    const choice = letterChoice ? questions[i]["option" + letter] : null;
     if (letterChoice === questions[i].answer){
       score++;
     }
