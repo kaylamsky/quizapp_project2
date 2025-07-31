@@ -72,7 +72,7 @@ function showQuestion() {
     btn.textContent = `${opt}: ${q["option" + opt]}`; 
 
     btn.onclick = () => {
-      userAnswers[currentQuestionIndex] = opt;
+      userAnswers[currentQuestionIndex] = q["option" + opt];
       document.querySelectorAll("#options button").forEach(b => {
       //if the button is pressed
       if (b === btn){
