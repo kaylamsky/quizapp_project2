@@ -168,6 +168,7 @@ app.get('/leaderboard.html', (req, res) => {
   res.sendFile(path.join(__dirname, 'leaderboard.html'));
 });
 
+
 app.get('/leaderboard', async (req, res) => {
   const users = getCollection("users");
 
