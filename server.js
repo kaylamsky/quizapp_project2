@@ -76,7 +76,9 @@ app.post('/score', async (req, res) => {
   let score = 0; 
   //questions[i].asnwer is the answer field from questions.json, checks that correct answer with user answer
   for (let i = 0; i < questions.length; i++){
-    if (userAnswers[i] === questions[i].answer){
+    const letterChoice = userAnswers[i]; 
+    const choice = letterChoice ? question[i]["option" + letter] : null;
+    if (letterChoice === questions[i].answer){
       score++;
     }
   }
@@ -84,8 +86,8 @@ app.post('/score', async (req, res) => {
   const users = getCollection("users");
   await users.updateOne(
     {username: username},
-    {$push: {scores: score}}
-  );
+    {$push: {quizHistory: {scores: score}},
+});
 
   // sends the score back as json, display to be fixed in script.js
   res.json({score: score}); 
