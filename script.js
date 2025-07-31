@@ -132,5 +132,5 @@ async function submitQuiz() {
 
 //redirect to results
   localStorage.setItem("quizScore", score);
-  window.location.href = "results.html";
+  window.location.href = "/results.html";
 }
