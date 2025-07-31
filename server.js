@@ -25,6 +25,10 @@ app.get('/quiz', (req, res) => {
   res.sendFile(path.join(__dirname, "quiz.html"));
 });
 
+app.get('/leaderboard.html', (req, res) => {
+  res.sendFile(path.join(__dirname, "leaderboard.html"));
+});
+
 app.get('/questions', async (req, res) => {
   try {
     const apiRes = await fetch('https://opentdb.com/api.php?amount=10&type=multiple');
@@ -163,10 +167,6 @@ app.get('/profile', async (req, res) => {
   if (!user) return res.status(404).send("User not found");
 
   res.send(user.quizHistory || []);
-});
-
-app.get('/leaderboard.html', (req, res) => {
-  res.sendFile(path.join(__dirname, 'leaderboard.html'));
 });
 
 
