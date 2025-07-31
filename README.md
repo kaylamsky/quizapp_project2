@@ -16,7 +16,11 @@ To run our server:
 3. In terminal, g to the folder of the cloned project and run npm install
 4. Now you can run the server using node server.js
 5. After you run the server, terminal should output a message saying that the app is listening on port 3000
-6. On your browser, go to localhost:3000 to see the website 
+6. On your browser, go to localhost:3000 to see the website
+
+For the database: 
+1. Make sure install mongodb
+2. Run node server.js 
 
 Team Members Role: 
 Kayla Motiram 
@@ -24,6 +28,9 @@ Kayla Motiram
 - updated my partners arrow function "onclick" function in script.js to add features such as sound for correct and wrong answers, and changing the color of the answer choice depending if its right or wrong, and always displaying the correct answer in green if a wrong answer was chosen
 - updated script.js so that it works directly with server.js for example the server routes, /questions in script.js is getting the questions from the questions.json file
 - contributed to style.css
+- mongodb, corresponding html files (signup.html, signin.html, etc), db.js, updates routes ins server.js to connect to mongodb
+- added a feature on signup page where taken username shows an error message that also disappears after 15s
+- deployed on render, made small changes to the code for it to work on render and not just locally 
   
 Haneen Mustafa
 - script.js: displays one question at a time with multiple choice options, tracks user answers and disables the inputs after selection, adds a 30-second timer per question with a visual progress bar, auto-skips unanswered questions displayed "Time's up"
