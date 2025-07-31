@@ -191,13 +191,15 @@ app.get('/leaderboard', async (req, res) => {
   try{
     await connectToDB();
     console.log('Database initialized');
+
+  app.listen(port, () => {
+  console.log(`App listening on port ${port}`)
+  });
   } catch(error){
     console.error('Failed to start database', error);
+    process.exit(1); 
   }
 })();
 
-app.listen(port, () => {
-  console.log(`App listening on port ${port}`)
-});
 
 
