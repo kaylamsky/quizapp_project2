@@ -86,8 +86,8 @@ app.post('/score', async (req, res) => {
   const users = getCollection("users");
   await users.updateOne(
     {username: username},
-    {$push: {quizHistory: {scores: score}},
-});
+    {$push: {scores: score}},
+);
 
   // sends the score back as json, display to be fixed in script.js
   res.json({score: score}); 
