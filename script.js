@@ -105,7 +105,7 @@ function showQuestion() {
 
 function handleNext() {
   currentQuestionIndex++;
-  if (currentQuestionIndex >= questions.length) {
+  if (currentQuestionIndex < questions.length) {
     showQuestion();
   } else {
     submitQuiz();
@@ -132,5 +132,5 @@ async function submitQuiz() {
 
 //redirect to results
   localStorage.setItem("quizScore", score);
-  window.location.href = "/results.html";
+  window.location.href = "/results";
 }
