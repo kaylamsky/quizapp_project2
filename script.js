@@ -6,7 +6,7 @@ let questions = [];
 let userAnswers = [];
 
 document.addEventListener("DOMContentLoaded", async () => {
-  if (window.location.pathname.includes("quiz.html")) {
+  if (window.location.pathname.includes("quiz")) {
     await loadQuestions();
     showQuestion();
     startTimer();
