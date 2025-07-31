@@ -83,7 +83,7 @@ app.post('/score', async (req, res) => {
   //save score to DB
   const users = getCollection("users");
   await users.updateOne(
-    {usernmae: username},
+    {username: username},
     {$push: {scores: score}}
   );
 
