@@ -105,7 +105,7 @@ function showQuestion() {
 
 function handleNext() {
   currentQuestionIndex++;
-  if (currentQuestionIndex < questions.length) {
+  if (currentQuestionIndex >= questions.length) {
     showQuestion();
   } else {
     submitQuiz();
