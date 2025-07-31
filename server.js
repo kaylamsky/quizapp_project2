@@ -12,9 +12,10 @@ app.get('/', (req, res) => {
   res.redirect('/signup');
 });
 
+app.use(express.static(path.join(__dirname)));
 app.use(express.urlencoded({extended: false})); 
 app.use(express.json()); 
-app.use(express.static(path.join(__dirname)));
+
 
 app.get('/results', (req, res) => {
   res.sendFile(path.join(__dirname, "results.html"));
