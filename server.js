@@ -165,7 +165,7 @@ app.get('/profile', async (req, res) => {
 });
 
 app.get('/leaderboard.html', (req, res) => {
-  res.sendFile(path.joing(__dirname, 'leaderboard.html'));
+  res.sendFile(path.join(__dirname, 'leaderboard.html'));
 });
 
 app.get('/leaderboard', async (req, res) => {
