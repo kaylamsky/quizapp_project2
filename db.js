@@ -1,15 +1,16 @@
 const {MongoClient} = require('mongodb'); 
+let db; 
 
 const dbURL = process.env.ATLAS_URI;
 
-let db; 
+
 async function connectToDB(){
     try{
     const client = new MongoClient(dbURL); 
     await client.connect();
     console.log('Connected to MongoDB');
     db = client.db("cs355db");
-    console.log("connected to database:". db.databaseName); 
+    console.log("connected to database:", db.databaseName); 
     } catch (error){
     console.log('Error connecting to MongoDB');
     throw error; 
