@@ -28,7 +28,7 @@ Kayla Motiram
 - updated my partners arrow function "onclick" function in script.js to add features such as sound for correct and wrong answers, and changing the color of the answer choice depending if its right or wrong, and always displaying the correct answer in green if a wrong answer was chosen
 - updated script.js so that it works directly with server.js for example the server routes, /questions in script.js is getting the questions from the questions.json file
 - contributed to style.css
-- mongodb, corresponding html files (signup.html, signin.html, etc), db.js, updates routes ins server.js to connect to mongodb
+- mongodb, corresponding html files (signup.html, signin.html), db.js, updates routes ins server.js to connect to mongodb
 - added a feature on signup page where taken username shows an error message that also disappears after 15s
 - deployed on render, made small changes to the code for it to work on render and not just locally 
   
