@@ -164,6 +164,9 @@ app.get('/profile', async (req, res) => {
   res.send(user.quizHistory || []);
 });
 
+app.get('/leaderboard.html', (req, res) => {
+  res.sendFile(path.joing(__dirname, 'leaderboard.html'));
+});
 
 app.get('/leaderboard', async (req, res) => {
   const users = getCollection("users");
